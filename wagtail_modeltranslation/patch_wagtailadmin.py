@@ -164,7 +164,11 @@ class WagtailTranslator(object):
             elif panel.__class__ in COMPOSED_PANEL_CLASSES:
                 patched_panels.append(self._patch_composed_panel(panel, related_model))
             elif panel.__class__ == InlinePanel:
-                patched_panels.append(self._patch_inline_panel(panel))
+                try:
+                    patched_panels.append(self._patch_inline_panel(panel))
+                except AttributeError:
+                    # Simply ignore for case when more than one inline are nested.
+                    pass
             else:
                 patched_panels.append(panel)
 
