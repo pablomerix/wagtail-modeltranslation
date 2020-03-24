@@ -118,7 +118,6 @@ class WagtailTranslator(object):
                 _patch_stream_field_meaningful_value(descriptor)
 
         # OVERRIDE CLEAN METHOD
-        import pdb; pdb.set_trace()
         model.base_form_class = WagtailFixedAdminPageForm
 
         # OVERRIDE PAGE METHODS
