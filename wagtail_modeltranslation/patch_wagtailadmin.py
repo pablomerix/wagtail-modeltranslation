@@ -118,6 +118,7 @@ class WagtailTranslator(object):
                 _patch_stream_field_meaningful_value(descriptor)
 
         # OVERRIDE CLEAN METHOD
+        import pdb; pdb.set_trace()
         model.base_form_class = WagtailFixedAdminPageForm
 
         # OVERRIDE PAGE METHODS
@@ -186,7 +187,6 @@ class WagtailTranslator(object):
 
             # if the original field is required and the current language is the default one
             # this field's blank property is set to False
-            import pdb; pdb.set_trace()
             if not original_field.blank and language == mt_settings.DEFAULT_LANGUAGE:
                 localized_field = model._meta.get_field(localized_field_name)
                 localized_field.blank = False
