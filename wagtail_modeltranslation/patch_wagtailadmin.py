@@ -227,14 +227,11 @@ class WagtailTranslator(object):
     def _patch_inline_panel(self, panel):
         # get the model relation through the panel relation_name which is the
         # inline model related_name
-        previous_relation = None
         try:
-            # We need to catch second level nested panels
+            # Custom fix for own project
             relation = getattr(self.patched_model, panel.relation_name)
-            previous_relation = relation
         except AttributeError:
-            relation = previous_relation
-
+            relation = getattr(self.patched_model.categories.rel.related_model, panel.relation_name)
         try:
             related_model = relation.rel.related_model
         except AttributeError:
