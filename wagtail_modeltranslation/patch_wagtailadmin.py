@@ -164,12 +164,7 @@ class WagtailTranslator(object):
             elif panel.__class__ in COMPOSED_PANEL_CLASSES:
                 patched_panels.append(self._patch_composed_panel(panel, related_model))
             elif panel.__class__ == InlinePanel:
-                import pdb; pdb.set_trace()
-                try:
-                    patched_panels.append(self._patch_inline_panel(panel))
-                except AttributeError:
-                    # Simply ignore for case when more than one inline are nested.
-                    pass
+                patched_panels.append(self._patch_inline_panel(panel))
             else:
                 patched_panels.append(panel)
 
@@ -232,6 +227,7 @@ class WagtailTranslator(object):
     def _patch_inline_panel(self, panel):
         # get the model relation through the panel relation_name which is the
         # inline model related_name
+        import pdb; pdb.set_trace()
         relation = getattr(self.patched_model, panel.relation_name)
 
         try:
