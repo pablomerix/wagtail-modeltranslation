@@ -164,6 +164,7 @@ class WagtailTranslator(object):
             elif panel.__class__ in COMPOSED_PANEL_CLASSES:
                 patched_panels.append(self._patch_composed_panel(panel, related_model))
             elif panel.__class__ == InlinePanel:
+                import pdb; pdb.set_trace()
                 try:
                     patched_panels.append(self._patch_inline_panel(panel))
                 except AttributeError:
