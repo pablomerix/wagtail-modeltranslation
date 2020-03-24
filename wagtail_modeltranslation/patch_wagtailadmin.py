@@ -186,6 +186,7 @@ class WagtailTranslator(object):
 
             # if the original field is required and the current language is the default one
             # this field's blank property is set to False
+            import pdb; pdb.set_trace()
             if not original_field.blank and language == mt_settings.DEFAULT_LANGUAGE:
                 localized_field = model._meta.get_field(localized_field_name)
                 localized_field.blank = False
@@ -205,7 +206,6 @@ class WagtailTranslator(object):
                 localized_panel.classname = original_panel.classname
             if hasattr(original_panel, 'widget'):
                 localized_panel.widget = original_panel.widget
-
             translated_panels.append(localized_panel)
 
         return translated_panels
